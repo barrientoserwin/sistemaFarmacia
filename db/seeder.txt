@@ -1,0 +1,31 @@
+//Registros Tipo Empleado
+insert into tipoempleado values(1,'vendedor');
+insert into tipoempleado values(2,'comprador');
+insert into tipoempleado values(3,'almacenero');
+insert into tipoempleado values(4,'ejecutivo');
+
+//Registros Permisos
+insert into permiso values(1,'Escritorio');
+insert into permiso values(2,'Almacen');
+insert into permiso values(3,'Compras');
+insert into permiso values(4,'Ventas');
+insert into permiso values(5,'Delivery');
+insert into permiso values(6,'Acceso');
+insert into permiso values(7,'Consulta Compra');
+insert into permiso values(8,'Consulta Venta');
+
+//Registro Usuario Admin
+insert into empleado values(1,'Guadalupe','Quina Morales','1996-03-16','65864366','Portachuelo',4);
+insert into usuario values(1,'quina','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','default.png','Administrador',1,1);
+insert into usuario_permiso(1,1);
+insert into usuario_permiso(1,2);
+insert into usuario_permiso(1,3);
+insert into usuario_permiso(1,4);
+insert into usuario_permiso(1,5);
+insert into usuario_permiso(1,6);
+insert into usuario_permiso(1,7);
+insert into usuario_permiso(1,8);
+
+//Acceso
+login=quina
+password=123456

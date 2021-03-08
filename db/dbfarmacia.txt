@@ -1,0 +1,123 @@
+create table cliente(
+    id_cliente int primary key auto_increment,
+    telefono varchar(10),
+    direccion varchar(80),
+    creditoMax int,
+    nit varchar(20),
+    mail varchar(50),
+    tipo varchar(30) not null,
+    nombre varchar(30),
+    apellidos varchar(40),
+    razonSocial varchar(80)
+);
+
+create table proveedor(
+    id_proveedor int primary key auto_increment,
+    telefono varchar(10),
+    direccion varchar(80),
+    mail varchar(50),
+    tipo varchar(30) not null,
+    nombre varchar(30),
+    apellidos varchar(40),
+    razonSocial varchar(80)
+);
+
+create table laboratorio(
+    id_laboratorio int primary key auto_increment,
+    nombre varchar(60) not null
+);
+
+create table almacen(
+    id_almacen int primary key auto_increment,
+    nombre varchar(60) not null,
+    descripcion varchar(90)
+);
+
+create table categoria(
+    id_categoria int primary key auto_increment,
+    nombre varchar(60) not null,
+    idCatMayor int,
+    foreign key(idCatMayor) references categoria(id_categoria)
+);
+
+create table medicamento(
+    id_medicamento int primary key auto_increment,
+    nombre varchar(60) not null,
+    accionTerapeutica varchar(80),
+    precio float not null,
+    fechaVcto date,
+    foto varchar(50),
+    id_laboratorio int not null,
+    id_categoria int not null,
+    foreign key(id_laboratorio) references laboratorio(id_laboratorio),
+    foreign key(id_categoria) references categoria(id_categoria)
+);
+
+create table tipoEmpleado(
+    id_tipoEmpleado int primary key auto_increment,
+    nombre varchar(60) not null
+);
+
+create table empleado(
+    id_empleado int primary key auto_increment,
+    nombre varchar(40) not null,
+    apellidos varchar(50) not null,
+    fechaNac date not null,
+    telefono varchar(10),
+    direccion varchar(80),
+    id_tipoEmpleado int not null,
+    foreign key(id_tipoEmpleado) references tipoEmpleado(id_tipoEmpleado)
+);
+
+create table usuario(
+    id_usuario int primary key auto_increment,
+    login varchar(20) not null,
+    password varchar(64) not null,
+    foto varchar(50),
+    rolUsuario varchar(30) not null,
+    estado tinyint(1) default(1),
+    id_empleado int not null,
+    foreign key(id_empleado) references empleado(id_empleado)
+);
+
+create table permiso(
+    id_permiso int primary key auto_increment,
+    nombre varchar(60) not null
+);
+
+create table usuario_permiso(
+    id_usuario int not null,
+    id_permiso int not null,
+    primary key(id_usuario,id_permiso),
+    foreign key(id_usuario) references usuario(id_usuario),
+    foreign key(id_permiso) references permiso(id_permiso)
+);
+
+create table medicamento_almacen(
+    id_medicamentoAlmacen int primary key auto_increment,
+    id_medicamento int not null,
+    id_almacen int not null,
+    stock int default(0),
+    foreign key(id_medicamento) references medicamento(id_medicamento),
+    foreign key(id_almacen) references almacen(id_almacen)
+);
+
+create table nota_compra(
+    id_compra int primary key auto_increment,
+    fecha date not null,
+    glosa varchar(80),
+    monto float not null,
+    estado varchar(20) not null,
+    id_proveedor int not null,
+    id_usuario int not null,
+    foreign key(id_proveedor) references proveedor(id_proveedor),
+    foreign key(id_usuario) references usuario(id_usuario)
+);
+
+create table detalle_compra(
+    id_compra int not null,
+    id_medicamentoAlmacen int not null,
+    primary key(id_compra,id_medicamentoAlmacen),
+    foreign key(id_compra) references nota_compra(id_compra),
+    foreign key(id_medicamentoAlmacen) references medicamento_almacen(id_medicamentoAlmacen)
+);
