@@ -1,0 +1,52 @@
+DELIMITER //
+CREATE TRIGGER incrementarStockCompra
+AFTER INSERT ON detalle_compra
+FOR EACH ROW
+BEGIN
+ UPDATE medicamento_almacen SET stock = stock + NEW.cantidad
+ WHERE medicamento_almacen.id_medicamentoAlmacen = NEW.id_medicamentoAlmacen;
+END//
+DELIMITER ;
+
+
+DELIMITER //
+CREATE TRIGGER anularNotaCompra
+AFTER UPDATE ON nota_compra
+FOR EACH ROW
+BEGIN
+ IF NEW.estado='Anulado'
+ THEN
+ UPDATE medicamento_almacen ma
+ JOIN detalle_compra dc
+ ON dc.id_medicamentoAlmacen=ma.id_medicamentoAlmacen
+ AND dc.id_compra= NEW.id_compra
+ SET ma.stock = ma.stock - dc.cantidad;
+ END IF;
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER decrementarStockVenta
+AFTER INSERT ON detalle_venta
+FOR EACH ROW
+BEGIN
+ UPDATE medicamento_almacen SET stock = stock - NEW.cantidad
+ WHERE medicamento_almacen.id_medicamentoAlmacen = NEW.id_medicamentoAlmacen;
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER anularNotaVenta
+AFTER UPDATE ON nota_venta
+FOR EACH ROW
+BEGIN
+ IF NEW.estado='Anulado'
+ THEN
+ UPDATE medicamento_almacen ma
+ JOIN detalle_venta dv
+ ON dv.id_medicamentoAlmacen=ma.id_medicamentoAlmacen
+ AND dv.id_venta= NEW.id_venta
+ SET ma.stock = ma.stock + dv.cantidad;
+ END IF;
+END//
+DELIMITER ;

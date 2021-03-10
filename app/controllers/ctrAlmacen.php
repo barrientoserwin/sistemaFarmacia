@@ -53,7 +53,15 @@ switch ($_GET["op"]){
  			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
  			"aaData"=>$data);
  		echo json_encode($results);
+	break;
 
+	case "selectAlmacen":
+        $rspta = $almacen->selectAlmacen();
+
+        echo '<option value="" selected>Seleccione</option>';
+        while (($reg = $rspta->fetch_object())) {
+            echo '<option value=' . $reg->id_almacen . '>' . $reg->nombre . '</option>';
+        }
 	break;
 }
 ?>

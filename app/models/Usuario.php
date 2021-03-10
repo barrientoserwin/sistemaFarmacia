@@ -59,12 +59,12 @@ class Usuario extends Conexion{
         $sql="INSERT INTO usuario(login,password,foto,rolUsuario,id_empleado) VALUES('$this->login','$this->password','$this->foto','$this->rolUsuario','$this->id_empleado')";
         $idUsuarioNew=parent::ejecutarConsulta_retornarID($sql);
 
-		$num_elementos=0;
+		$i=0;
 		$sw=true;
-		while ($num_elementos < count($permisos)){
-			$sql_detalle = "INSERT INTO usuario_permiso(id_usuario, id_permiso) VALUES('$idUsuarioNew', '$permisos[$num_elementos]')";
+		while ($i < count($permisos)){
+			$sql_detalle = "INSERT INTO usuario_permiso(id_usuario, id_permiso) VALUES('$idUsuarioNew', '$permisos[$i]')";
 			parent::ejecutar($sql_detalle) or $sw = false;
-			$num_elementos=$num_elementos + 1;
+			$i=$i + 1;
 		}
 		return $sw;
 	}

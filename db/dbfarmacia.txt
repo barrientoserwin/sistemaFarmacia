@@ -117,7 +117,33 @@ create table nota_compra(
 create table detalle_compra(
     id_compra int not null,
     id_medicamentoAlmacen int not null,
+    cantidad int not null,
+    precioc float not null,
     primary key(id_compra,id_medicamentoAlmacen),
     foreign key(id_compra) references nota_compra(id_compra),
+    foreign key(id_medicamentoAlmacen) references medicamento_almacen(id_medicamentoAlmacen)
+);
+
+create table nota_venta(
+    id_venta int primary key auto_increment,
+    fecha date not null,
+    glosa varchar(80),
+    descuento float,
+    monto float not null,
+    facturada tinyint(1) default(1),
+    estado varchar(20) not null,
+    id_cliente int not null,
+    id_usuario int not null,
+    foreign key(id_cliente) references cliente(id_cliente),
+    foreign key(id_usuario) references usuario(id_usuario)
+);
+
+create table detalle_venta(
+    id_venta int not null,
+    id_medicamentoAlmacen int not null,
+    cantidad int not null,
+    preciov float not null,
+    primary key(id_venta,id_medicamentoAlmacen),
+    foreign key(id_venta) references nota_venta(id_venta),
     foreign key(id_medicamentoAlmacen) references medicamento_almacen(id_medicamentoAlmacen)
 );

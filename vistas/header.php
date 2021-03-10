@@ -114,7 +114,8 @@ if (strlen(session_id()) < 1)
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="frmCompra.php"><i class="fa fa-circle-o"></i> Ingresos</a></li>
+                <li><a href="frmNotaCompra.php"><i class="fa fa-circle-o"></i> Compras</a></li>
+                <li><a href="frmMedicamentoAlmacen.php"><i class="fa fa-circle-o"></i> Medicamento Almacen</a></li>
                 <li><a href="frmPEmpresa.php"><i class="fa fa-circle-o"></i> Proveedor Empresa</a></li>
                 <li><a href="frmPPersona.php"><i class="fa fa-circle-o"></i> Proveedor Persona</a></li>
               </ul>
@@ -127,7 +128,7 @@ if (strlen(session_id()) < 1)
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="frmVenta.php"><i class="fa fa-circle-o"></i> Ventas</a></li>
+                <li><a href="frmNotaVenta.php"><i class="fa fa-circle-o"></i> Ventas</a></li>
                 <li><a href="frmCEmpresa.php"><i class="fa fa-circle-o"></i> Cliente Empresa</a></li>
                 <li><a href="frmCPersona.php"><i class="fa fa-circle-o"></i> Cliente Persona</a></li>
               </ul>

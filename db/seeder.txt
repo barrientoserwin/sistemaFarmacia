@@ -3,6 +3,7 @@ insert into tipoempleado values(1,'vendedor');
 insert into tipoempleado values(2,'comprador');
 insert into tipoempleado values(3,'almacenero');
 insert into tipoempleado values(4,'ejecutivo');
+insert into tipoempleado values(5,'desarrollador');
 
 //Registros Permisos
 insert into permiso values(1,'Escritorio');
@@ -15,17 +16,91 @@ insert into permiso values(7,'Consulta Compra');
 insert into permiso values(8,'Consulta Venta');
 
 //Registro Usuario Admin
-insert into empleado values(1,'Guadalupe','Quina Morales','1996-03-16','65864366','Portachuelo',4);
-insert into usuario values(1,'quina','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','default.png','Administrador',1,1);
-insert into usuario_permiso(1,1);
-insert into usuario_permiso(1,2);
-insert into usuario_permiso(1,3);
-insert into usuario_permiso(1,4);
-insert into usuario_permiso(1,5);
-insert into usuario_permiso(1,6);
-insert into usuario_permiso(1,7);
-insert into usuario_permiso(1,8);
+insert into empleado values(1,'Erwin','Barrientos M.','1997-12-16','65822366','San Luis',5);
+insert into usuario values(1,'barrientos','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','default.png','Administrador',1,1);
+insert into usuario_permiso values(1,1);
+insert into usuario_permiso values(1,2);
+insert into usuario_permiso values(1,3);
+insert into usuario_permiso values(1,4);
+insert into usuario_permiso values(1,5);
+insert into usuario_permiso values(1,6);
+insert into usuario_permiso values(1,7);
+insert into usuario_permiso values(1,8);
 
 //Acceso
 login=quina
 password=123456
+
+//Registro de Categorias
+insert into categoria(id_categoria,nombre) values(1,'Anti-inflamatorio');
+insert into categoria(id_categoria,nombre) values(2,'Cardiovascular');
+insert into categoria(id_categoria,nombre) values(3,'Gastro-intestinal');
+insert into categoria(id_categoria,nombre) values(4,'Vitaminas y Nutrientes');
+
+insert into categoria(id_categoria,nombre,idCatMayor) values(5,'No esteroides',1);
+insert into categoria(id_categoria,nombre,idCatMayor) values(6,'Enzimas Proteoliticas',1);
+insert into categoria(id_categoria,nombre,idCatMayor) values(7,'Anti-anginosos',2);
+insert into categoria(id_categoria,nombre,idCatMayor) values(8,'Diureticos',2);
+insert into categoria(id_categoria,nombre,idCatMayor) values(9,'Vasopresores',2);
+insert into categoria(id_categoria,nombre,idCatMayor) values(10,'Anti-hipertensores',2);
+insert into categoria(id_categoria,nombre,idCatMayor) values(11,'Antidiarreicos',3);
+insert into categoria(id_categoria,nombre,idCatMayor) values(12,'Antiácidos',3);
+insert into categoria(id_categoria,nombre,idCatMayor) values(13,'Laxantes',3);
+insert into categoria(id_categoria,nombre,idCatMayor) values(14,'Antiflatulentos',3);
+insert into categoria(id_categoria,nombre,idCatMayor) values(15,'Vitaminas',4);
+insert into categoria(id_categoria,nombre,idCatMayor) values(16,'Minerales',4);
+insert into categoria(id_categoria,nombre,idCatMayor) values(17,'Suplemento Vitaminico',4);
+
+//Registro de Laboratorio
+insert into laboratorio values(1,'INTI');
+insert into laboratorio values(2,'COFAR S.A.');
+insert into laboratorio values(3,'ALPHARMA');
+insert into laboratorio values(4,'BAGO DE BOLIVIA S.A.');
+insert into laboratorio values(5,'VITA S.A.');
+insert into laboratorio values(6,'IFA S.A.');
+insert into laboratorio values(7,'LC PHARMA S.R.L');
+
+//Registro de Almacen
+insert into almacen values(1,'Almacen A','General');
+insert into almacen values(2,'Almacen B','Refrigerentes');
+
+
+
+//Registro de medicamentos
+insert into medicamento values(1,'Ibuprofeno (400gr)','Reducir el dolor y la fiebre',2,'2024-05-29','1615382006.jpg',7,5);
+insert into medicamento values(2,'Metoprolol(100mg)','Para tratar la presión arterial alta',7,'2022-11-03','1615382166.jpg',1,7);
+insert into medicamento values(3,'Furosemida(4mg)','Para tratar el edema (la retención de líquidos; exceso de líquido retenido en los tejidos corporales)',10,'2023-10-13','1615382276.jpg',3,8);
+insert into medicamento values(4,'Epinefrina(Ampolla de 1mg)','Para tratar reacciones alérgicas que pongan en peligro la vida causadas por alimentos, medicamentos y otras causas.',22,'2022-08-29','1615382614.jpg',6,9);
+insert into medicamento values(5,'Hidrotalcita(500mg)','para el alivio de la acidez estomacal ',17,'2022-02-18','1615382892.jpg',2,12);
+insert into medicamento values(6,'Dantron(50mg)','Control de náuseas y vómitos inducidos por quimioterapia y radioterapia',12,'2024-02-18','1615383028.jpg',7,13);
+insert into medicamento values(7,'Vitamina A (Retinol)','Esta vitamina favorece la buena vista, especialmente ante la luz tenue.',15,'2022-02-18','1615383105.jpg',6,15);
+insert into medicamento values(8,'Hierro(Minerales)','Se utiliza para tratar o evitar la anemia',35,'2022-02-18','1615383105.jpg',5,16);
+insert into medicamento values(9,'Vitamina C (100mg)','Ayuda a proteger las células contra los daños causados por los radicales libres.',25,'2022-02-18','1615383284.jpg',2,17);
+
+//Registro de proveedor EMPRESA
+insert into proveedor(id_proveedor,telefono,direccion,mail,tipo,razonSocial) values(1,70201305,'C/Lucas Jaimes #1959','drogeriaInti@inti.com.bo','empresa','INTI S.A.');
+insert into proveedor(id_proveedor,telefono,direccion,mail,tipo,razonSocial) values(2,65479102,'C/Victor Eduardo #2293','cofarsa@cofar.com.bo.com','empresa','COFAR S.A.');
+insert into proveedor(id_proveedor,telefono,direccion,mail,tipo,razonSocial) values(3,65455455,'C/Calacoto #21','bolivia@bago.com.bo','empresa','BAGO DE BOLIVIA S.A.');
+insert into proveedor(id_proveedor,telefono,direccion,mail,tipo,razonSocial) values(4,65473555,'C/Aspiazu','info@vita.com.bo','empresa','VITA S.A.');
+insert into proveedor(id_proveedor,telefono,direccion,mail,tipo,razonSocial) values(5,33437446,'C/Achachairu #19','info@laboratoriosifa.com','empresa','IFA S.A.');
+insert into proveedor(id_proveedor,telefono,direccion,mail,tipo,razonSocial) values(6,65474572,'C/Luis Crespo #2019 ','gerenciageneral@lcpharmabolivia.com','empresa','LC PHARMA S.R.L');
+
+//Registro de proveedor Persona
+insert into proveedor(id_proveedor,telefono,direccion,mail,tipo,nombre,apellidos) values(7,78894123,'C/Monseñor','vladimirpv26@gmail.com','persona','Vladimir','Poma Vargas');
+insert into proveedor(id_proveedor,telefono,direccion,mail,tipo,nombre,apellidos) values(8,75785454,'C/24 de Septiembre','benjasaavedra@gmail.com','persona','Benjamin','Melgar Saavedra');
+insert into proveedor(id_proveedor,telefono,direccion,mail,tipo,nombre,apellidos) values(9,65478912,'C/Cañoto','caarlitosfuentes@gmail.com','persona','Juan Carlos','Fuentes Bravo');
+insert into proveedor(id_proveedor,telefono,direccion,mail,tipo,nombre,apellidos) values(10,64882554,'C/Mexico','varoneduardo@gmail.com','persona','Eduardo','Varon Merco');
+
+//Registro de empleado
+insert into empleado values(2,'Joaquin','Quispe Paz','1990-06-27',78945278,'C/Beni',1);
+insert into empleado values(3,'Diego','Robles Morales','1985-07-06',78945278,'C/Raul Orellana',2);
+insert into empleado values(4,'Marta','Quiroga Valdes','1994-04-10',78945278,'C/Porvenir',3);
+insert into empleado values(5,'Orlando','Cespedes Arias','1974-09-23',78945278,'C/Santa Cruz',4);
+
+//Registro de cliente Persona
+insert into cliente(id_cliente,telefono,direccion,creditoMax,nit,mail,tipo,nombre,apellidos) values(1,7895555,'C/Suares',2,8104596,'pedro@gmail.com','persona','Pedro','Rodriguez Luna');
+insert into cliente(id_cliente,telefono,direccion,creditoMax,nit,mail,tipo,nombre,apellidos) values(2,6204512,'C/Barrio Obrero',1,7894512,'antonio25@gmail.com','persona','Antonio','Ramos Cuellar');
+
+//Registro de cliente proveedor
+insert into cliente(id_cliente,telefono,direccion,creditoMax,nit,mail,tipo,razonSocial) values(3,6544121,'C/Avaroa',4,6172755465726,'info@farmaport.com','empresa','FarmaPort S.A');
+insert into cliente(id_cliente,telefono,direccion,creditoMax,nit,mail,tipo,razonSocial) values(4,7885520,'C/Warnes',3,6172726455555,'info@medicpharma.com','empresa','MedicPharma S.A');

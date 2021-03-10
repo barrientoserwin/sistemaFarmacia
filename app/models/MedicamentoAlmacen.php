@@ -30,9 +30,29 @@ class MedicamentoAlmacen extends Conexion{
 		return parent::ejecutar($sql);
 	}
 
-	public function selectMedicamentoAlmacen(){
-		$sql="SELECT id_permiso,nombre FROM permiso";
+	public function listarMedicamentoAl(){
+		$sql="SELECT m.id_medicamento,m.nombre,c.nombre as categoria,l.nombre as laboratorio,m.precio,m.fechaVcto,m.foto
+		FROM medicamento m INNER JOIN laboratorio l ON l.id_laboratorio=m.id_laboratorio INNER JOIN categoria c ON c.id_categoria=m.id_categoria
+		WHERE m.id_medicamento NOT IN (SELECT ma.id_medicamento FROM medicamento_almacen ma WHERE ma.id_almacen='$this->id_almacen')";
 		return parent::ejecutar($sql);
+	}
+
+	public function listarMedicamentoAlmacen(){
+		$sql="SELECT ma.id_medicamentoAlmacen,m.nombre,c.nombre as categoria,l.nombre as laboratorio,m.precio,m.fechaVcto,m.foto
+		FROM medicamento_almacen ma INNER JOIN medicamento m ON m.id_medicamento=ma.id_medicamento INNER JOIN laboratorio l ON l.id_laboratorio=m.id_laboratorio INNER JOIN categoria c ON c.id_categoria=m.id_categoria
+		WHERE ma.id_medicamentoAlmacen in (SELECT ma.id_medicamentoAlmacen  FROM medicamento_almacen ma WHERE ma.id_almacen='$this->id_almacen')";
+		return parent::ejecutar($sql);
+	}
+
+	public function guardar($id_medicamento,$stock){
+		$i=0;
+		$sw=true;
+		while ($i < count($id_medicamento)){
+			$sql_detalle = "INSERT INTO medicamento_almacen(id_medicamento,id_almacen,stock) VALUES('$id_medicamento[$i]','$this->id_almacen','$stock[$i]')";
+			parent::ejecutar($sql_detalle) or $sw = false;
+			$i=$i + 1;
+		}
+		return $sw;
 	}
 }
 ?>

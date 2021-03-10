@@ -33,6 +33,11 @@ class Almacen extends Conexion{
 		return parent::ejecutar($sql);
 	}
 
+	public function selectAlmacen(){
+		$sql="SELECT id_almacen,nombre FROM almacen";
+		return parent::ejecutar($sql);
+	}
+
 	public function guardar(){
         $sql="INSERT INTO almacen(nombre,descripcion) VALUES('$this->nombre','$this->descripcion')";
 		if(parent::ejecutar($sql))
